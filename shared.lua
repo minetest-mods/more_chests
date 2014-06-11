@@ -16,7 +16,7 @@ local function formspec(string)
 		"list[current_name;main;0,0;8,4;]"..
 		"list[current_player;main;0,5;8,4;]"..
 		"field[.25,9.5;6,1;shared;Shared with (separate names with spaces):;"..string.."]"..
-		"button[6,9;2,1;submit]"
+		"button[6,9;2,1;submit;submit]"
 end
 
 minetest.register_node("more_chests:shared", {
