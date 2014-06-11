@@ -1,1 +1,1 @@
--- Future aliases for compatibility with 0gb.us`s more_chests mod.
+-- Future aliases for compatibility with 0gb.us`s chests_0gb_us mod.
