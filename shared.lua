@@ -35,7 +35,7 @@ minetest.register_node("more_chests:shared", {
 	end,
 	on_construct = function(pos)
 		local meta = minetest.env:get_meta(pos)
-		meta:set_string("formspec", formspec(""))
+		meta:set_string("formspec", get_formspec(""))
 		meta:set_string("infotext", "Shared Chest")
 		meta:set_string("owner", "")
 		local inv = meta:get_inventory()
