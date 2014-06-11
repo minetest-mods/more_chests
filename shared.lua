@@ -11,7 +11,7 @@ local function has_locked_chest_privilege(meta, player)
 	end
 end
 
-local function formspec(string)
+local function get_formspec(string)
 	return "size[8,10]"..
 		"list[current_name;main;0,0;8,4;]"..
 		"list[current_player;main;0,5;8,4;]"..
@@ -93,11 +93,11 @@ minetest.register_node("more_chests:shared", {
 	end,
 	on_receive_fields = function(pos, formspec, fields, sender)
 		local meta = minetest.env:get_meta(pos);
-		if meta:get_string("owner") == sender:get_player_name() then
-			meta:set_string("shared", fields.shared);
-			meta:set_string("formspec", formspec(fields.shared))
-				if not fields then 
-					return end
+		if fields.shared then 
+			if meta:get_string("owner") == sender:get_player_name() then
+				meta:set_string("shared", fields.shared);
+				meta:set_string("formspec", get_formspec(fields.shared))
+			end
 		end
 	end,
 })
