@@ -22,7 +22,7 @@ end
 minetest.register_node("chests_0gb_us:shared", {
 	description = "Shared Chest",
 	tiles = {"default_chest_top.png", "default_chest_top.png", "default_chest_side.png",
-		"default_chest_side.png", "default_chest_side.png", "chests.0gb.us_shared_front.png"},
+		"default_chest_side.png", "default_chest_side.png", "shared_front.png"},
 	paramtype2 = "facedir",
 	groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2},
 	legacy_facedir_simple = true,

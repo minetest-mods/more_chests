@@ -7,8 +7,8 @@ end
 
 minetest.register_node("more_chests:dropbox", {
 	description = "Dropbox",
-	tiles = {"default_chest_top.png", "default_chest_top.png", "chests.0gb.us_dropbox_right.png",
-		"default_chest_side.png", "default_chest_side.png", "chests.0gb.us_dropbox_front.png"},
+	tiles = {"default_chest_top.png", "default_chest_top.png", "dropbox_right.png",
+		"default_chest_side.png", "default_chest_side.png", "dropbox_front.png"},
 	paramtype2 = "facedir",
 	groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2},
 	legacy_facedir_simple = true,
