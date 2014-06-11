@@ -96,6 +96,8 @@ minetest.register_node("more_chests:shared", {
 		if meta:get_string("owner") == sender:get_player_name() then
 			meta:set_string("shared", fields.shared);
 			meta:set_string("formspec", shared(fields.shared))
+				if not fields then 
+					return end
 		end
 	end,
 })
