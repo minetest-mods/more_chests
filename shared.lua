@@ -19,7 +19,7 @@ local function formspec(string)
 		"button[6,9;2,1;submit;submit]"
 end
 
-minetest.register_node("chests_0gb_us:shared", {
+minetest.register_node("more_chests:shared", {
 	description = "Shared Chest",
 	tiles = {"default_chest_top.png", "default_chest_top.png", "default_chest_side.png",
 		"default_chest_side.png", "default_chest_side.png", "shared_front.png"},
@@ -101,7 +101,7 @@ minetest.register_node("chests_0gb_us:shared", {
 })
 
 minetest.register_craft({
-	output = 'chests_0gb_us:shared',
+	output = 'more_chests:shared',
 	recipe = {
 		{'default:wood','default:leaves','default:wood'},
 		{'default:wood','default:steel_ingot','default:wood'},
