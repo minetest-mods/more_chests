@@ -7,7 +7,9 @@ end
 
 minetest.register_node("more_chests:cobble", {
 	description = "Cobble Chest",
-	tiles = {"default_cobble.png"},
+//	tiles = {"default_cobble.png"},
+	tiles = {"default_cobble.png", "default_cobble.png", "default_cobble.png",
+		"default_cobble.png", "default_cobble.png", "cobblechest_front.png"},
 	paramtype2 = "facedir",
 	groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2},
 	legacy_facedir_simple = true,
