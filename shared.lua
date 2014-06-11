@@ -91,11 +91,11 @@ minetest.register_node("more_chests:shared", {
 		minetest.log("action", player:get_player_name()..
 				" takes stuff from shared chest at "..minetest.pos_to_string(pos))
 	end,
-	on_receive_fields = function(pos, formname, fields, sender)
+	on_receive_fields = function(pos, formspec, fields, sender)
 		local meta = minetest.env:get_meta(pos);
 		if meta:get_string("owner") == sender:get_player_name() then
 			meta:set_string("shared", fields.shared);
-			meta:set_string("formspec", shared(fields.shared))
+			meta:set_string("formspec", formspec(fields.shared))
 		end
 	end,
 })
