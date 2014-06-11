@@ -1,0 +1,1 @@
+-- Future aliases for compatibility with 0gb.us`s more_chests mod.
