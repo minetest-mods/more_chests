@@ -34,7 +34,7 @@ minetest.register_node("more_chests:dropbox", {
 		local inv = meta:get_inventory()
 		return inv:is_empty("main")
 	end,
-    allow_metadata_inventory_take = function(pos, listname, index, stack, player)
+	allow_metadata_inventory_take = function(pos, listname, index, stack, player)
 		local meta = minetest.env:get_meta(pos)
 		if not has_locked_chest_privilege(meta, player) then
 			minetest.log("action", player:get_player_name()..
@@ -49,11 +49,11 @@ minetest.register_node("more_chests:dropbox", {
 		minetest.log("action", player:get_player_name()..
 				" moves stuff in dropbox at "..minetest.pos_to_string(pos))
 	end,
-    on_metadata_inventory_put = function(pos, listname, index, stack, player)
+	on_metadata_inventory_put = function(pos, listname, index, stack, player)
 		minetest.log("action", player:get_player_name()..
 				" moves stuff to dropbox at "..minetest.pos_to_string(pos))
 	end,
-    on_metadata_inventory_take = function(pos, listname, index, stack, player)
+	on_metadata_inventory_take = function(pos, listname, index, stack, player)
 		minetest.log("action", player:get_player_name()..
 				" takes stuff from dropbox at "..minetest.pos_to_string(pos))
 	end,
