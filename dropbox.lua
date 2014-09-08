@@ -47,11 +47,20 @@ minetest.register_node("more_chests:dropbox", {
 	end,
 	allow_metadata_inventory_put = function(pos, listname, index, stack, player)
 		local meta = minetest.get_meta(pos)
-		if not has_locked_chest_privilege(meta, player)
-		and meta:get_inventory():get_list(listname)[index]:get_name() ~= "" then
+		if has_locked_chest_privilege(meta, player) then
+			return stack:get_count()
+		end
+		local target = meta:get_inventory():get_list(listname)[index]
+		local target_name = target:get_name()
+		local stack_count = stack:get_count()
+		if target_name == stack:get_name()
+		and target:get_count() < stack_count then
+			return stack_count
+		end
+		if target_name ~= "" then
 			return 0
 		end
-		return stack:get_count()
+		return stack_count
 	end,
 	on_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
 		minetest.log("action", player:get_player_name()..
