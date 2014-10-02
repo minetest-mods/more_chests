@@ -5,7 +5,22 @@ minetest.register_node("more_chests:wifi", {
 {name="wifi_front_animated.png", animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=2.0}}
 },
 	paramtype2 = "facedir",
-	groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2},
+	groups = {snappy=2, choppy=2, oddly_breakable_by_hand=2, tubedevice = 1, tubedevice_receiver = 1},
+-- Pipeworks
+	tube = {
+		insert_object = function(pos, node, stack, direction)
+			local meta = minetest.get_meta(pos)
+			local inv = meta:get_inventory()
+			return inv:add_item("main", stack)
+		end,
+		can_insert = function(pos, node, stack, direction)
+			local meta = minetest.get_meta(pos)
+			local inv = meta:get_inventory()
+			return inv:room_for_item("main", stack)
+		end,
+		input_inventory = "main",
+		connect_sides = {left = 1, right = 1, back = 1, front = 1, bottom = 1, top = 1}
+	},
 	legacy_facedir_simple = true,
 	sounds = default.node_sound_wood_defaults(),
 	on_construct = function(pos)
