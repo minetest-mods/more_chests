@@ -10,14 +10,28 @@ minetest.register_node("more_chests:cobble", {
 	tiles = {"default_cobble.png", "default_cobble.png", "default_cobble.png",
 		"default_cobble.png", "default_cobble.png", "cobblechest_front.png"},
 	paramtype2 = "facedir",
-	groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2},
+	groups = {snappy=2, choppy=2, oddly_breakable_by_hand=2, tubedevice = 1, tubedevice_receiver = 1},
+-- First attempt to add a way to connect to pipeworks.	
+	tube = {
+	insert_object = function(pos, node, stack, direction)
+		local meta = minetest.get_meta(pos)
+		local inv = meta:get_inventory()
+		return inv:add_item("main", stack)
+	end,
+	can_insert = function(pos, node, stack, direction)
+		local meta = minetest.get_meta(pos)
+		local inv = meta:get_inventory()
+		return inv:room_for_item("main", stack)
+	end,
+	input_inventory = "main",
+	connect_sides = {left = 1, right = 1, back = 1, front = 1, bottom = 1, top = 1}
+		},
 	legacy_facedir_simple = true,
 	sounds = default.node_sound_wood_defaults(),
 	after_place_node = function(pos, placer)
 		local meta = minetest.env:get_meta(pos)
 		meta:set_string("owner", placer:get_player_name() or "")
---[[		meta:set_string("infotext", "Locked Chest (owned by "..
-				meta:get_string("owner")..")")]]
+
 	end,
 	on_construct = function(pos)
 		local meta = minetest.env:get_meta(pos)
@@ -25,7 +39,6 @@ minetest.register_node("more_chests:cobble", {
 				"size[8,9]"..
 				"list[current_name;main;0,0;8,4;]"..
 				"list[current_player;main;0,5;8,4;]")
---		meta:set_string("infotext", "Locked Chest")
 		meta:set_string("owner", "")
 		local inv = meta:get_inventory()
 		inv:set_size("main", 8*4)
