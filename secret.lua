@@ -16,8 +16,8 @@ local closed = "size[2,1]"..
 
 minetest.register_node("more_chests:secret", {
 	description = "Secret Chest",
-	tiles = {"default_chest_top.png", "default_chest_top.png", "default_chest_side.png",
-		"default_chest_side.png", "default_chest_side.png", "secret_front.png"},
+	tiles = {"secret_top.png", "secret_top.png", "secret_side.png",
+		"secret_side.png", "secret_side.png", "secret_front.png"},
 	paramtype2 = "facedir",
 	groups = {snappy=2, choppy=2, oddly_breakable_by_hand=2, tubedevice = 1, tubedevice_receiver = 1},
 -- Pipeworks

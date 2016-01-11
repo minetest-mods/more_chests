@@ -1,9 +1,7 @@
 minetest.register_node("more_chests:wifi", {
 	description = "Wifi Chest",
 	tiles = {"wifi_top.png", "wifi_top.png", "wifi_side.png",
-		"wifi_side.png", "wifi_side.png",
-{name="wifi_front_animated.png", animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=2.0}}
-},
+		"wifi_side.png", "wifi_side.png", "wifi_front.png"},
 	paramtype2 = "facedir",
 	groups = {snappy=2, choppy=2, oddly_breakable_by_hand=2,},
 	legacy_facedir_simple = true,

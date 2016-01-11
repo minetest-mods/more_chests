@@ -23,8 +23,8 @@ end
 
 minetest.register_node("more_chests:shared", {
 	description = "Shared Chest",
-	tiles = {"default_chest_top.png", "default_chest_top.png", "default_chest_side.png",
-		"default_chest_side.png", "default_chest_side.png", "shared_front.png"},
+	tiles = {"shared_top.png", "shared_top.png", "shared_side.png",
+		"shared_side.png", "shared_side.png", "shared_front.png"},
 	paramtype2 = "facedir",
 	groups = {snappy=2, choppy=2, oddly_breakable_by_hand=2, tubedevice = 1, tubedevice_receiver = 1},
 -- Pipeworks
