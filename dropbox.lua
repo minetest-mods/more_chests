@@ -7,8 +7,8 @@ end
 
 minetest.register_node("more_chests:dropbox", {
 	description = "Dropbox",
-	tiles = {"default_chest_top.png", "default_chest_top.png", "dropbox_right.png",
-		"default_chest_side.png", "default_chest_side.png", "dropbox_front.png"},
+	tiles = {"dropbox_top.png", "dropbox_top.png", "dropbox_side.png",
+		"dropbox_side.png", "dropbox_side.png", "dropbox_front.png"},
 	paramtype2 = "facedir",
 	groups = {snappy=2, choppy=2, oddly_breakable_by_hand=2, tubedevice = 1, tubedevice_receiver = 1},
 -- Pipeworks
@@ -39,7 +39,9 @@ minetest.register_node("more_chests:dropbox", {
 		meta:set_string("formspec",
 				"size[8,9]"..
 				"list[current_name;main;0,0;8,4;]"..
-				"list[current_player;main;0,5;8,4;]")
+				"list[current_player;main;0,5;8,4;]"..
+				"listring[current_name;main]" ..
+				"listring[current_player;main]")
 		meta:set_string("infotext", "Chest")
 		local inv = meta:get_inventory()
 		inv:set_size("main", 8*4)
