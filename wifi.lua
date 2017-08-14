@@ -6,7 +6,46 @@ minetest.register_node("more_chests:wifi", {
 	tiles = {"wifi_top.png", "wifi_top.png", "wifi_side.png",
 		"wifi_side.png", "wifi_side.png", "wifi_front.png"},
 	paramtype2 = "facedir",
-	groups = {snappy=2, choppy=2, oddly_breakable_by_hand=2,},
+	groups = {snappy=2, choppy=2, oddly_breakable_by_hand=2, tubedevice = 1, tubedevice_receiver = 1},
+	-- Pipeworks
+	tube = {
+		insert_object = function(pos, node, stack, direction, owner)
+			if not owner then
+				return stack
+			end
+			local player = minetest.get_player_by_name(owner)
+			if not player then
+				return stack
+			end
+			local inv = player:get_inventory()
+			return inv:add_item("more_chests:wifi", stack)
+		end,
+		can_insert = function(pos, node, stack, direction, owner)
+			if not owner then
+				return false
+			end
+			local player = minetest.get_player_by_name(owner)
+			if not player then
+				return false
+			end
+			local inv = player:get_inventory()
+			return inv:room_for_item("more_chests:wifi", stack)
+		end,
+		input_inventory = "more_chests:wifi",
+		return_input_invref = function(pos, node, direction, player_name)
+			if not player_name then
+				return false
+			end
+			local player = minetest.get_player_by_name(player_name)
+			if not player then
+				return false
+			end
+			return player:get_inventory()
+		end,
+		connect_sides = {left = 1, right = 1, back = 1, front = 1, bottom = 1, top = 1}
+	},
+	after_place_node = pipeworks.after_place,
+	after_dig_node = pipeworks.after_dig,
 	legacy_facedir_simple = true,
 	sounds = default.node_sound_wood_defaults(),
 	on_construct = function(pos)
