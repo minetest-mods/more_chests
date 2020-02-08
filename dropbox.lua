@@ -101,9 +101,9 @@ minetest.register_node("more_chests:dropbox", {
 minetest.register_craft({
 	output = 'more_chests:dropbox',
 	recipe = {
-		{'default:wood','','default:wood'},
-		{'default:wood','default:steel_ingot','default:wood'},
-		{'default:wood','default:wood','default:wood'}
+		{'group:wood','','group:wood'},
+		{'group:wood','default:steel_ingot','group:wood'},
+		{'group:wood','group:wood','group:wood'}
 	}
 })
 
