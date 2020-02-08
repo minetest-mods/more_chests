@@ -1,3 +1,6 @@
+-- translation support
+local S = minetest.get_translator("more_chests")
+
 local function has_locked_chest_privilege(meta, player)
 	if player:get_player_name() ~= meta:get_string("owner") then
 		return false
@@ -6,7 +9,7 @@ local function has_locked_chest_privilege(meta, player)
 end
 
 minetest.register_node("more_chests:cobble", {
-	description = "Cobble Chest",
+	description = S("Cobble Chest"),
 	tiles = {"default_cobble.png", "default_cobble.png", "default_cobble.png",
 		"default_cobble.png", "default_cobble.png", "cobblechest_front.png"},
 	paramtype2 = "facedir",
