@@ -1,3 +1,6 @@
+-- translation support
+local S = minetest.get_translator("more_chests")
+
 local function has_locked_chest_privilege(meta, player)
 	local name = player:get_player_name()
 	local shared = " "..meta:get_string("shared").." "
@@ -19,15 +22,15 @@ local function get_formspec(string)
 		"list[current_name;main;0,0.3;8,4;]"..
 		"list[current_player;main;0,4.85;8,1;]" ..
 		"list[current_player;main;0,6;8,3;8]" ..
-		"field[.25,9.5;6,1;shared;Shared with (separate names with spaces):;"..string.."]"..
-		"button[6,9.2;2,1;submit;submit]" ..
+		"field[.25,9.5;8,1;shared;"..S("Shared with (separate names with spaces)")..":;"..string.."]"..
+		"button[6,9.2;2,1;submit;"..S("submit").."]" ..
 		"listring[current_name;main]" ..
 		"listring[current_player;main]" ..
 		default.get_hotbar_bg(0,4.85)
 end
 
 minetest.register_node("more_chests:shared", {
-	description = "Shared Chest",
+	description = S("Shared Chest"),
 	tiles = {"shared_top.png", "shared_top.png", "shared_side.png",
 		"shared_side.png", "shared_side.png", "shared_front.png"},
 	paramtype2 = "facedir",
@@ -52,13 +55,14 @@ minetest.register_node("more_chests:shared", {
 	after_place_node = function(pos, placer)
 		local meta = minetest.get_meta(pos)
 		meta:set_string("owner", placer:get_player_name() or "")
-		meta:set_string("infotext", "Shared Chest (owned by "..
-				meta:get_string("owner")..")")
+		meta:set_string("infotext", S("@1 (owned by @2)",
+				S("Shared Chest"),
+				meta:get_string("owner")))
 	end,
 	on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
 		meta:set_string("formspec", get_formspec(""))
-		meta:set_string("infotext", "Shared Chest")
+		meta:set_string("infotext", S("Shared Chest"))
 		meta:set_string("owner", "")
 		local inv = meta:get_inventory()
 		inv:set_size("main", 8*4)
