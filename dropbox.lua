@@ -1,3 +1,7 @@
+-- Load support for translation.
+local S = minetest.get_translator("more_chests")
+local DS = minetest.get_translator("default")
+
 local function has_locked_chest_privilege(meta, player)
 	if player:get_player_name() ~= meta:get_string("owner") then
 		return false
@@ -6,7 +10,7 @@ local function has_locked_chest_privilege(meta, player)
 end
 
 minetest.register_node("more_chests:dropbox", {
-	description = "Dropbox",
+	description = S("Dropbox"),
 	tiles = {"dropbox_top.png", "dropbox_top.png", "dropbox_side.png",
 		"dropbox_side.png", "dropbox_side.png", "dropbox_front.png"},
 	paramtype2 = "facedir",
@@ -31,8 +35,9 @@ minetest.register_node("more_chests:dropbox", {
 	after_place_node = function(pos, placer)
 		local meta = minetest.get_meta(pos)
 		meta:set_string("owner", placer:get_player_name() or "")
-		meta:set_string("infotext", "Dropbox (owned by "..
-				meta:get_string("owner")..")")
+		meta:set_string("infotext", S("@1 (owned by @2)",
+				S("Dropbox"),
+				meta:get_string("owner")))
 	end,
 	on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
@@ -47,7 +52,7 @@ minetest.register_node("more_chests:dropbox", {
 				"listring[current_name;main]" ..
 				"listring[current_player;main]" ..
 				default.get_hotbar_bg(0,4.85))
-		meta:set_string("infotext", "Chest")
+		meta:set_string("infotext", DS("Chest"))
 		local inv = meta:get_inventory()
 		inv:set_size("main", 8*4)
 	end,
@@ -106,4 +111,3 @@ minetest.register_craft({
 		{'default:wood','default:wood','default:wood'}
 	}
 })
-
