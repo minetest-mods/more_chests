@@ -1,4 +1,4 @@
--- translation support
+-- Load support for translation.
 local S = minetest.get_translator("more_chests")
 local DS = minetest.get_translator("default")
 
@@ -111,4 +111,3 @@ minetest.register_craft({
 		{'default:wood','default:wood','default:wood'}
 	}
 })
-

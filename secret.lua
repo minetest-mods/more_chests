@@ -1,4 +1,4 @@
--- translation support
+-- Load support for translation.
 local S = minetest.get_translator("more_chests")
 
 local function has_locked_chest_privilege(meta, player)
@@ -130,4 +130,3 @@ minetest.register_craft({
 		{'default:wood','default:wood','default:wood'}
 	}
 })
-

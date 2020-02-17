@@ -1,4 +1,4 @@
--- translation support
+-- Load support for translation.
 local S = minetest.get_translator("more_chests")
 
 minetest.register_node("more_chests:wifi", {
@@ -52,4 +52,3 @@ minetest.register_on_joinplayer(function(player)
 	local inv = player:get_inventory()
 	inv:set_size("more_chests:wifi", 8*4)
 end)
-
