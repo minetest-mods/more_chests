@@ -1,9 +1,32 @@
 local gen_def = dofile(minetest.get_modpath("more_chests") .. "/utils/base.lua")
 local S = minetest.get_translator("more_chests")
 
+-- TODO model open
+
 local fridge = gen_def({
-	-- TODO model open
 	description = S("Fridge"),
+	type = "fridge",
+	size = "small",
+	tiles = {
+		side = "fridge_side.png",
+		front = "fridge_front.png",
+	},
+	recipe = {
+		{"", "default:steel_ingot", ""},
+		{"default:steel_ingot", "default:ice", "default:steel_ingot"},
+		{"", "default:steel_ingot", ""}
+	},
+})
+
+minetest.register_node("more_chests:fridge", fridge)
+minetest.register_craft({
+	output = "more_chests:fridge",
+	recipe = fridge.recipe,
+})
+
+
+local big_fridge = gen_def({
+	description = S("Big Fridge"),
 	type = "fridge",
 	size = "big",
 	node_box = {
@@ -20,9 +43,8 @@ local fridge = gen_def({
 	},
 })
 
-
-minetest.register_node("more_chests:fridge", fridge)
+minetest.register_node("more_chests:big_fridge", big_fridge)
 minetest.register_craft({
-	output = "more_chests:fridge",
-	recipe = fridge.recipe,
+	output = "more_chests:big_fridge",
+	recipe = big_fridge.recipe,
 })

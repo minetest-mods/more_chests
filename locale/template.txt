@@ -2,6 +2,7 @@
 Cobble Chest=
 Dropbox=
 Fridge=
+Big Fridge=
 Secret Chest=
 Shared Chest=
 Wifi Chest=
