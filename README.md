@@ -1,8 +1,3 @@
-<style>
-    th { display: none; }
-    td { text-align: center; }
-</style>
-
 # more_chests
 Originally a fork of 0gb.us's chests_0gb_us (https://forum.minetest.net/viewtopic.php?f=11&t=4366).  
 Megaf's more_chests fixes several bugs, uses new textures and adds compatibility with [VanessaE's Pipeworks] (https://github.com/VanessaE/pipeworks) mod.  
