@@ -1,6 +1,8 @@
 -- Load support for translation.
 local S = minetest.get_translator("more_chests")
 
+local pipeworks_enabled = minetest.global_exists("pipeworks")
+
 minetest.register_node("more_chests:wifi", {
 	description = S("Wifi Chest"),
 	tiles = {"wifi_top.png", "wifi_top.png", "wifi_side.png",
@@ -8,7 +10,7 @@ minetest.register_node("more_chests:wifi", {
 	paramtype2 = "facedir",
 	groups = {snappy=2, choppy=2, oddly_breakable_by_hand=2, tubedevice = 1, tubedevice_receiver = 1},
 	-- Pipeworks
-	tube = {
+	tube = pipeworks_enabled and {
 		insert_object = function(pos, node, stack, direction, owner)
 			if not owner then
 				return stack
@@ -43,9 +45,9 @@ minetest.register_node("more_chests:wifi", {
 			return player:get_inventory()
 		end,
 		connect_sides = {left = 1, right = 1, back = 1, front = 1, bottom = 1, top = 1}
-	},
-	after_place_node = pipeworks.after_place,
-	after_dig_node = pipeworks.after_dig,
+	} or nil,
+	after_place_node = pipeworks_enabled and pipeworks.after_place or nil,
+	after_dig_node = pipeworks_enabled and pipeworks.after_dig or nil,
 	legacy_facedir_simple = true,
 	sounds = default.node_sound_wood_defaults(),
 	on_construct = function(pos)
