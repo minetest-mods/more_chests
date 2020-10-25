@@ -1,6 +1,8 @@
 -- Load support for translation.
 local S = minetest.get_translator("more_chests")
 
+local pipeworks_enabled = minetest.global_exists("pipeworks")
+
 minetest.register_node("more_chests:wifi", {
 	description = S("Wifi Chest"),
 	tiles = {"wifi_top.png", "wifi_top.png", "wifi_side.png",
@@ -8,7 +10,46 @@ minetest.register_node("more_chests:wifi", {
 		{name="wifi_front_animated.png", animation={type="vertical_frames",
 			aspect_w=16, aspect_h=16, length=2.0}}},
 	paramtype2 = "facedir",
-	groups = {snappy=2, choppy=2, oddly_breakable_by_hand=2,},
+	groups = {snappy=2, choppy=2, oddly_breakable_by_hand=2, tubedevice = 1, tubedevice_receiver = 1},
+	-- Pipeworks
+	tube = pipeworks_enabled and {
+		insert_object = function(pos, node, stack, direction, owner)
+			if not owner then
+				return stack
+			end
+			local player = minetest.get_player_by_name(owner)
+			if not player then
+				return stack
+			end
+			local inv = player:get_inventory()
+			return inv:add_item("more_chests:wifi", stack)
+		end,
+		can_insert = function(pos, node, stack, direction, owner)
+			if not owner then
+				return false
+			end
+			local player = minetest.get_player_by_name(owner)
+			if not player then
+				return false
+			end
+			local inv = player:get_inventory()
+			return inv:room_for_item("more_chests:wifi", stack)
+		end,
+		input_inventory = "more_chests:wifi",
+		return_input_invref = function(pos, node, direction, player_name)
+			if not player_name then
+				return false
+			end
+			local player = minetest.get_player_by_name(player_name)
+			if not player then
+				return false
+			end
+			return player:get_inventory()
+		end,
+		connect_sides = {left = 1, right = 1, back = 1, front = 1, bottom = 1, top = 1}
+	} or nil,
+	after_place_node = pipeworks_enabled and pipeworks.after_place or nil,
+	after_dig_node = pipeworks_enabled and pipeworks.after_dig or nil,
 	legacy_facedir_simple = true,
 	sounds = default.node_sound_wood_defaults(),
 	on_construct = function(pos)
