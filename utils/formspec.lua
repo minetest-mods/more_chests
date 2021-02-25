@@ -1,4 +1,5 @@
 function generate(size)
+	local cfg
 	if size == "small" then
 		cfg = {
 			window_width = 8,
