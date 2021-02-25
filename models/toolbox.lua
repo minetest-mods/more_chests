@@ -15,7 +15,7 @@ local function register_toolbox(description, material, side_tile, craft_item)
 	})
 	minetest.register_node("more_chests:toolbox_" .. material, def)
 	minetest.register_craft({
-		output = "morechests:toolbox_" .. material,
+		output = "more_chests:toolbox_" .. material,
 		recipe = {
 			{craft_item, craft_item, craft_item},
 			{craft_item, "group:pickaxe", craft_item},

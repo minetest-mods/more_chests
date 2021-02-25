@@ -41,13 +41,15 @@ function generate_chest_def(def)
 		end,
 		on_construct = function(pos)
 			local meta = minetest.get_meta(pos)
-			local formspec_str = def.formspec or generate_formspec_string(def.size)
+			local formspec_str = def.formspec or generate_formspec_string(def.size, def.inventory_name or nil)
 			meta:set_string("formspec", formspec_str)
 			meta:set_string("infotext", def.description)
 			meta:set_string("owner", "")
-			local inv = meta:get_inventory()
-			local chest_size = def.size == "big" and 14*5 or 8*4
-			inv:set_size("main", chest_size)
+			if def.inventory_name == nil or def.inventory_name == "main" then
+				local inv = meta:get_inventory()
+				local chest_size = def.size == "big" and 14*5 or 8*4
+				inv:set_size("main", chest_size)
+			end
 		end,
 		can_dig = function(pos,player)
 			local meta = minetest.get_meta(pos)

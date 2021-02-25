@@ -1,5 +1,12 @@
-function generate(size)
+function generate(size, inventory_name)
 	local cfg
+
+	-- chest inventory name
+	local  inv_name = inventory_name
+	if inv_name == nil then
+		inv_name = "main"
+	end
+
 	if size == "small" then
 		cfg = {
 			window_width = 8,
@@ -23,7 +30,7 @@ function generate(size)
 		default.gui_bg ..
 		default.gui_bg_img ..
 		default.gui_slots ..
-		"list[current_name;main;0,0.3;" ..
+		"list["..((inv_name == "main") and "current_name" or "current_player")..";"..inv_name..";0,0.3;" ..
 		cfg.chest_width .. "," .. cfg.chest_height .. ";]" ..
 		"list[current_player;main;" ..
 		player_inv_x_orig .. "," .. player_inv_y_orig ..
@@ -31,7 +38,7 @@ function generate(size)
 		"list[current_player;main;" ..
 		player_inv_x_orig .. "," .. (player_inv_y_orig + 1.15) ..
 		";8,3;8]" ..
-		"listring[current_name;main]" ..
+		"listring["..(inv_name == "main" and "current_name" or "current_player")..";"..inv_name.."]" ..
 		"listring[current_player;main]" ..
 		default.get_hotbar_bg(player_inv_x_orig, player_inv_y_orig)
 end
