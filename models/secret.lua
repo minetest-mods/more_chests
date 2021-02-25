@@ -28,11 +28,6 @@ local secret = gen_def({
 	},
 	formspec = open,
 	pipeworks_enabled = true,
-	recipe = {
-		{"group:wood", "default:cobble", "group:wood"},
-		{"group:wood", "default:steel_ingot", "group:wood"},
-		{"group:wood", "group:wood", "group:wood"}
-	},
 })
 
 secret.on_receive_fields = function(pos, formname, fields, sender)
@@ -50,5 +45,9 @@ end
 minetest.register_node("more_chests:secret", secret)
 minetest.register_craft({
 	output = "more_chests:secret",
-	recipe = secret.recipe,
+	recipe = {
+		{"group:wood", "default:cobble", "group:wood"},
+		{"group:wood", "default:steel_ingot", "group:wood"},
+		{"group:wood", "group:wood", "group:wood"}
+	}
 })

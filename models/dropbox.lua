@@ -12,11 +12,6 @@ local dropbox = gen_def({
 		front = "dropbox_front.png"
 	},
 	pipeworks_enabled = true,
-	recipe = {
-		{"group:wood", "", "group:wood"},
-		{"group:wood", "default:steel_ingot", "group:wood"},
-		{"group:wood", "group:wood", "group:wood"}
-	},
 	allow_metadata_inventory_move = false,
 	allow_metadata_inventory_put = function(pos, listname, index, stack, player)
 		local meta = minetest.get_meta(pos)
@@ -41,5 +36,9 @@ local dropbox = gen_def({
 minetest.register_node("more_chests:dropbox", dropbox)
 minetest.register_craft({
 	output = "more_chests:dropbox",
-	recipe = dropbox.recipe,
+	recipe = {
+		{"group:wood", "", "group:wood"},
+		{"group:wood", "default:steel_ingot", "group:wood"},
+		{"group:wood", "group:wood", "group:wood"}
+	}
 })

@@ -34,7 +34,6 @@ function generate_chest_def(def)
 			oddly_breakable_by_hand=2
 		},
 		sounds = def.sounds or default.node_sound_wood_defaults(),
-		recipe = def.recipe, -- TODO this is buggy, reason why all models except from toolbox have their own extra call to minetest.register_craft - TODO possibily other similar bugs?
 		after_place_node = function(pos, placer)
 			local meta = minetest.get_meta(pos)
 			meta:set_string("owner", placer:get_player_name() or "")

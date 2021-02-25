@@ -44,11 +44,6 @@ local shared = gen_def({
 	formspec = get_formspec(""),
 	pipeworks_enabled = true,
 	sounds = default.node_sound_wood_defaults(),
-	recipe = {
-		{"group:wood", "default:leaves", "group:wood"},
-		{"group:wood", "default:steel_ingot", "group:wood"},
-		{"group:wood", "group:wood", "group:wood"}
-	},
 	allow_metadata_inventory_move = actions.get_allow_metadata_inventory_move{"shared chest", check_privs=check_privs},
 	allow_metadata_inventory_put = actions.get_allow_metadata_inventory_put{"shared chest", check_privs=check_privs},
 	allow_metadata_inventory_take = actions.get_allow_metadata_inventory_take{"shared chest", check_privs=check_privs},
@@ -68,5 +63,9 @@ end
 minetest.register_node("more_chests:shared", shared)
 minetest.register_craft({
 	output = "more_chests:shared",
-	recipe = shared.recipe,
+	recipe = {
+		{"group:wood", "default:leaves", "group:wood"},
+		{"group:wood", "default:steel_ingot", "group:wood"},
+		{"group:wood", "group:wood", "group:wood"}
+	}
 })

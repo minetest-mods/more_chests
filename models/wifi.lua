@@ -11,11 +11,6 @@ local wifi = gen_def({
 		front = {name="wifi_front_animated.png", animation={type="vertical_frames",
 			aspect_w=16, aspect_h=16, length=2.0}}
 	},
-	recipe = {
-		{"group:wood", "default:mese", "group:wood"},
-		{"group:wood", "default:steel_ingot", "group:wood"},
-		{"group:wood", "group:wood", "group:wood"}
-	},
 	allow_metadata_inventory_move = false,
 	allow_metadata_inventory_put = false,
 	allow_metadata_inventory_take = false,
@@ -26,7 +21,11 @@ wifi.can_dig = function(pos, player) return true end
 minetest.register_node("more_chests:wifi", wifi)
 minetest.register_craft({
 	output = "more_chests:wifi",
-	recipe = wifi.recipe,
+	recipe = {
+		{"group:wood", "default:mese", "group:wood"},
+		{"group:wood", "default:steel_ingot", "group:wood"},
+		{"group:wood", "group:wood", "group:wood"}
+	},
 })
 
 minetest.register_on_joinplayer(function(player)

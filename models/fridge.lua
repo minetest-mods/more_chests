@@ -3,6 +3,7 @@ local S = minetest.get_translator("more_chests")
 
 -- TODO model open
 
+-- normal fridge
 local fridge = gen_def({
 	description = S("Fridge"),
 	type = "fridge",
@@ -11,20 +12,19 @@ local fridge = gen_def({
 		side = "fridge_side.png",
 		front = "fridge_front.png",
 	},
-	recipe = {
-		{"", "default:steel_ingot", ""},
-		{"default:steel_ingot", "default:ice", "default:steel_ingot"},
-		{"", "default:steel_ingot", ""}
-	},
 })
 
 minetest.register_node("more_chests:fridge", fridge)
 minetest.register_craft({
 	output = "more_chests:fridge",
-	recipe = fridge.recipe,
+	recipe = {
+		{"", "default:steel_ingot", ""},
+		{"default:steel_ingot", "default:ice", "default:steel_ingot"},
+		{"", "default:steel_ingot", ""}
+	}
 })
 
-
+-- big fridge
 local big_fridge = gen_def({
 	description = S("Big Fridge"),
 	type = "fridge",
@@ -36,15 +36,14 @@ local big_fridge = gen_def({
 		side = "fridge_side.png",
 		front = "fridge_front.png",
 	},
-	recipe = {
-		{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
-		{"default:steel_ingot", "default:ice", "default:steel_ingot"},
-		{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"}
-	},
 })
 
 minetest.register_node("more_chests:big_fridge", big_fridge)
 minetest.register_craft({
 	output = "more_chests:big_fridge",
-	recipe = big_fridge.recipe,
+	recipe = {
+		{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
+		{"default:steel_ingot", "default:ice", "default:steel_ingot"},
+		{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"}
+	}
 })

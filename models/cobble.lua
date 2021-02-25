@@ -10,17 +10,16 @@ local cobble = gen_def({
 		side = "default_cobble.png",
 		front = "cobblechest_front.png"
 	},
-	pipeworks_enabled = true,
-	recipe = {
-		{"group:wood", "default:cobble", "group:wood"},
-		{"default:cobble", "default:steel_ingot", "default:cobble"},
-		{"group:wood", "default:cobble", "group:wood"}
-	},
+	pipeworks_enabled = true
 })
 
 
 minetest.register_node("more_chests:cobble", cobble)
 minetest.register_craft({
 	output = "more_chests:cobble",
-	recipe = cobble.recipe,
+	recipe = {
+		{"group:wood", "default:cobble", "group:wood"},
+		{"default:cobble", "default:steel_ingot", "default:cobble"},
+		{"group:wood", "default:cobble", "group:wood"}
+	}
 })
