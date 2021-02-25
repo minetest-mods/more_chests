@@ -8,7 +8,8 @@ local wifi = gen_def({
 	tiles = {
 		top = "wifi_top.png",
 		side = "wifi_side.png",
-		front = "wifi_front.png"
+		front = {name="wifi_front_animated.png", animation={type="vertical_frames",
+			aspect_w=16, aspect_h=16, length=2.0}}
 	},
 	recipe = {
 		{"group:wood", "default:mese", "group:wood"},
