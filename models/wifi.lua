@@ -22,10 +22,18 @@ wifi.can_dig = function(pos, player) return true end
 -- pipeworks support (we need to override what is created by gen_def because too generic)
 wifi.tube = pipeworks_enabled and {
 	insert_object = function(pos, node, stack, direction, owner)
+		local wifi_chest_owner
 		if not owner then
-			return stack
+			local wifi_chest = minetest.get_meta(pos)
+			if not wifi_chest then
+				return stack
+			end
+			wifi_chest_owner = wifi_chest:get_string("owner")
+			if not wifi_chest_owner then
+				return stack
+			end
 		end
-		local player = minetest.get_player_by_name(owner)
+		local player = minetest.get_player_by_name(owner or wifi_chest_owner)
 		if not player then
 			return stack
 		end
@@ -33,10 +41,18 @@ wifi.tube = pipeworks_enabled and {
 		return inv:add_item("more_chests:wifi", stack)
 	end,
 	can_insert = function(pos, node, stack, direction, owner)
+		local wifi_chest_owner
 		if not owner then
-			return false
+			local wifi_chest = minetest.get_meta(pos)
+			if not wifi_chest then
+				return stack
+			end
+			wifi_chest_owner = wifi_chest:get_string("owner")
+			if not wifi_chest_owner then
+				return false
+			end
 		end
-		local player = minetest.get_player_by_name(owner)
+		local player = minetest.get_player_by_name(owner or wifi_chest_owner)
 		if not player then
 			return false
 		end
