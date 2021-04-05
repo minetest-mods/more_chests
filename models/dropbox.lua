@@ -29,7 +29,10 @@ local dropbox = gen_def({
 			return 0
 		end
 		return stack_count
-	end
+	end,
+	allow_metadata_inventory_take = actions.get_allow_metadata_inventory_take({
+		"dropbox", check_privs = actions.has_locked_chest_privilege
+	}),
 })
 
 
