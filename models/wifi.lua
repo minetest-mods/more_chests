@@ -89,7 +89,8 @@ minetest.register_on_joinplayer(function(player)
 end)
 
 minetest.register_allow_player_inventory_action(function(player, action, inventory, inventory_info)
-	if (inventory_info.to_list == "more_chests:wifi" or inventory_info.from_list == "more_chests:wifi") and not minetest.is_creative_enabled(player:get_player_name()) then
+	if (inventory_info.to_list == "more_chests:wifi" or inventory_info.from_list == "more_chests:wifi")
+			and not minetest.is_creative_enabled(player:get_player_name()) then
 		local pos = player:get_pos()
 		local witem = player:get_wielded_item()
 		local def = witem and witem:get_definition()
