@@ -87,3 +87,20 @@ minetest.register_on_joinplayer(function(player)
 	local inv = player:get_inventory()
 	inv:set_size("more_chests:wifi", 8*4)
 end)
+
+minetest.register_allow_player_inventory_action(function(player, action, inventory, inventory_info)
+	if (inventory_info.to_list == "more_chests:wifi" or inventory_info.from_list == "more_chests:wifi")
+			and not minetest.is_creative_enabled(player:get_player_name()) then
+		local pos = player:get_pos()
+		pos.y = pos.y + player:get_properties().eye_height
+
+		local def = player:get_wielded_item():get_definition()
+		local range = def and def.range or 4
+		-- Additional tolerance to reach the node corner diagonally
+		-- Also allows minor eye offsets to be used
+		local chest = minetest.find_node_near(pos, range + 1, "more_chests:wifi")
+		if not chest then
+			return 0
+		end
+	end
+end)
