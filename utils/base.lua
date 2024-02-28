@@ -33,6 +33,7 @@ function generate_chest_def(def)
 			choppy=2,
 			oddly_breakable_by_hand=2
 		},
+		is_ground_content = false,
 		sounds = def.sounds or default.node_sound_wood_defaults(),
 		after_place_node = function(pos, placer)
 			local meta = minetest.get_meta(pos)
