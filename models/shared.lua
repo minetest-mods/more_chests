@@ -25,7 +25,7 @@ local function check_privs(meta, player)
 	local shared = " " .. meta:get_string("shared") .. " "
 	if name == meta:get_string("owner") then
 		return true
-	elseif shared:find(" " .. name .. " ") then
+	elseif shared:find(" " .. name .. " ",1,true) then
 		return true
 	else
 		return false
