@@ -1,4 +1,4 @@
-function generate(size, inventory_name)
+local function generate(size, inventory_name)
 	local cfg
 
 	-- chest inventory name

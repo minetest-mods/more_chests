@@ -1,6 +1,6 @@
 -- NOTE: `require` is not allowed with mod security on
 -- `dofile` with a return on the module is used instead
-generate_formspec_string = dofile(minetest.get_modpath("more_chests").."/utils/formspec.lua")
+local generate_formspec_string = dofile(minetest.get_modpath("more_chests").."/utils/formspec.lua")
 local actions = dofile(minetest.get_modpath("more_chests").."/utils/actions.lua")
 local S = minetest.get_translator("more_chests")
 
@@ -14,7 +14,7 @@ local function parse_action(value, default_getter)
 	end
 end
 
-function generate_chest_def(def)
+local function generate_chest_def(def)
 	-- TODO assert def.size in ("big", "small")
 	local out = {
 		description = def.description,
@@ -59,12 +59,18 @@ function generate_chest_def(def)
 		end,
 	}
 	-- register log actions, NOTE passing an anonymous function to avoid getting the default if not necessary
-	out.allow_metadata_inventory_move = parse_action(def.allow_metadata_inventory_move, function() actions.get_allow_metadata_inventory_move{def.type} end)
-	out.allow_metadata_inventory_put = parse_action(def.allow_metadata_inventory_put, function() actions.get_allow_metadata_inventory_put{def.type} end)
-	out.allow_metadata_inventory_take = parse_action(def.allow_metadata_inventory_take, function() actions.get_allow_metadata_inventory_take{def.type} end)
-	out.on_metadata_inventory_move = parse_action(def.on_metadata_inventory_move, function() actions.get_on_metadata_inventory_move(def.type) end)
-	out.on_metadata_inventory_put = parse_action(def.on_metadata_inventory_put, function() actions.get_on_metadata_inventory_put(def.type) end)
-	out.on_metadata_inventory_take = parse_action(def.on_metadata_inventory_take, function() actions.get_on_metadata_inventory_take(def.type) end)
+	out.allow_metadata_inventory_move = parse_action(def.allow_metadata_inventory_move,
+		function() actions.get_allow_metadata_inventory_move{def.type} end)
+	out.allow_metadata_inventory_put = parse_action(def.allow_metadata_inventory_put,
+		function() actions.get_allow_metadata_inventory_put{def.type} end)
+	out.allow_metadata_inventory_take = parse_action(def.allow_metadata_inventory_take,
+		function() actions.get_allow_metadata_inventory_take{def.type} end)
+	out.on_metadata_inventory_move = parse_action(def.on_metadata_inventory_move,
+		function() actions.get_on_metadata_inventory_move(def.type) end)
+	out.on_metadata_inventory_put = parse_action(def.on_metadata_inventory_put,
+		function() actions.get_on_metadata_inventory_put(def.type) end)
+	out.on_metadata_inventory_take = parse_action(def.on_metadata_inventory_take,
+		function() actions.get_on_metadata_inventory_take(def.type) end)
 	-- if model is not a simple block handle node_box attribute
 	if def.node_box then
 		out.drawtype = "nodebox"
